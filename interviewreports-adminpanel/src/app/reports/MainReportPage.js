@@ -10,6 +10,7 @@ class MainReportPage extends Component{
             reports:[],
             searchValue:""
         }
+        console.log(this.state.reports);
     }
 
         componentDidMount(){
@@ -35,6 +36,9 @@ class MainReportPage extends Component{
         }
 
         render(){
+            if(this.state.reports.length === 0){
+                return(<h1>Loading....</h1>)
+            }
             return(
                 <Fragment>
                     <Search onSearchValueChange={this.getSearchValue}/>
