@@ -4,7 +4,7 @@ import './App.css';
 import Header from './app/partials/Header'
 import Search from './app/partials/Search'
 import MainReportPage from './app/reports/MainReportPage'
-
+import {Switch, Route} from 'react-router-dom'
 class App extends Component {
 
 
@@ -12,8 +12,10 @@ class App extends Component {
     return (
       <Fragment>
         <Header />
-        <Search/>
-        <MainReportPage/>
+       <Switch>
+         <Route exact path='/newReport' component={MainReportPage}/>
+        <Route exact path="/" component={MainReportPage}/>
+        </Switch>
       </Fragment>
     );
   }

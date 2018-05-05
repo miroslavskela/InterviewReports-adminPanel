@@ -7,6 +7,7 @@ const ReportList = ({data}) => {
     return(
         
     data.map((report, id) => {
+        
         return (<div key={id} className="row"> 
                     <SingleReport data={report}/> 
                 </div>)

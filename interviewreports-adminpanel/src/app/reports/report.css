@@ -11,3 +11,34 @@
 .description {
     font-weight: 700;
 }
+
+/*Modal*/
+
+.modal{
+    display:block;
+    z-index: 100;
+    position:fixed;
+    top:30%;
+    left:5%;
+    border:1px solid black;
+}
+
+.col-3{
+    float: left;
+    width: 33%;
+}
+.col-9{
+    float: left;
+    width:66%;
+}
+.report-data{
+    font-size: 18px;
+    font-weight: 700;
+}
+.close{
+    width:30px;
+     position: absolute;
+     top: 2%;
+     right: 2%;
+     cursor: pointer;    
+ }

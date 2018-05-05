@@ -13,6 +13,21 @@ class ReportService {
             return new Report(report)})
         })
     }
+
+    fetchSingleReport = (id) => {
+        return fetch(`${baseUrl}reports/${id}`)
+        .then((response) => {
+            return response.json()
+        }).then((report) => {
+            return new Report(report)
+        })
+    }
+
+    deleteReport = (id) => {
+        return fetch(`${baseUrl}reports/${id}`,{
+            method: 'DELETE'
+        })
+    }
 }
 
 
