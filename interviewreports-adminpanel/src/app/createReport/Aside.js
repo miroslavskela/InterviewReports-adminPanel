@@ -2,7 +2,7 @@ import React from 'react'
 import './createReport.css'
 
 
-const Aside = ({candidate}) => {
+const Aside = ({candidate,company}) => {
 
     return(
         <div className="aside">
@@ -10,7 +10,8 @@ const Aside = ({candidate}) => {
         <p>2. Select Company</p>
         <p>3. Fill Report Details</p>
         <hr/>
-        <p>Candidate:{candidate}</p>
+        <p>Candidate:<span>{candidate}</span></p>
+        
         </div>
     )
 }

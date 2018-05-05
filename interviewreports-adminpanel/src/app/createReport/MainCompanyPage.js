@@ -1,17 +1,26 @@
 import React, {Component, Fragment} from 'react'
 import {reportService} from '../../services/reportsService'
-import Aside from './Aside'
+import Aside1 from './Aside1'
 import CompanyList from './CompanyList'
+import './company.css'
+import Search from '../partials/Search'
+
 
 
 class MainCompanyPage extends Component{
     constructor(props){
         super(props)
         this.state={
-            companies;[],
-            candidateName:this.props.data.candidateName,
-            candidateId:this.props.data.candidateId
+            companies:[],
+            searchValue:"",
+            candidateName:this.props.data,
+            candidateId:this.props.data1,
+            companyName:"",
+            companyId:"",
+            companyPage:true,
+            reportDetailsPage:false
         }
+        console.log(this.props.data2)
         
     }
 
@@ -22,14 +31,48 @@ class MainCompanyPage extends Component{
         } )
     }
 
+    getCompanyData = (id, name) => {
+        this.setState({companyId:id, companyName:name})
+    }
+
+    changePage = () => {
+        this.setState({companyPage:false, reportDetailPage:true})
+    }
+    getSearchValue = (value) => {
+        this.setState({searchValue:value})
+    }
+    backToCandidate = () => {
+        this.setState({companyPage:false})
+        this.props.data2()
+    }
+
+    getCompanies = () => {
+        const { companies } = this.state
+        const filterCompanies = companies.filter((company) => {
+            return (company.name.toLowerCase()).includes(this.state.searchValue.toLowerCase());
+        })
+
+
+        return filterCompanies
+
+    }
+
+
     render(){
         return(
             <Fragment>
-                <Aside candidate={this.state.candidateName}/>
+               {this.state.companyPage?<div>
+                   <Search onSearchValueChange={this.getSearchValue}/>
+                <Aside1 candidate={this.state.candidateName} company={this.state.companyName}/>
                 <div className=" cont">
-                <CompanyList data={this.state.companies}/>
-                <button>Next</button>
+                <ul>
+                <CompanyList data={this.getCompanies()} getData={this.getCompanyData}/>
+                <button onClick={this.changePage} disabled={!this.state.companyName}>Next</button>
+                <button onClick={this.backToCandidate}>Back</button>
+                </ul>
                 </div>
+                </div>:null}
+                {this.state.reportDetailPage?<h1>Progress</h1>:null}
             </Fragment>
         )
     }

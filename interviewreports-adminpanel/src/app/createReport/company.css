@@ -19,8 +19,16 @@ span{
     font-weight: 700;
 }
 .candidate{
-    font-weight: 700;
+   font-weight: 700;
 }
 .collection-item{
     border:1px solid black;
+}
+
+li.companies{
+    width: 72%;
+    padding:20px;
+    height: 50px;
+    border:1px solid black;
+    margin-bottom:5px;
 }
