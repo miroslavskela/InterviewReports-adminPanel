@@ -1,0 +1,13 @@
+.detail, .deleteReport{
+    width:20px;
+    vertical-align: middle;
+}
+.col{
+    border-bottom:1px solid black
+}
+.detail-delete{
+    height:90px;
+}
+.description {
+    font-weight: 700;
+}
