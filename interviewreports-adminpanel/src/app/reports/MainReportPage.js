@@ -10,7 +10,7 @@ class MainReportPage extends Component{
             reports:[],
             searchValue:""
         }
-        console.log(this.props.data2)
+        
         console.log(this.state.reports);
     }
 

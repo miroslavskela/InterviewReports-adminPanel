@@ -1,0 +1,40 @@
+*{
+    box-sizing: border-box;
+}
+
+.con{
+    float:left;
+    width:72%;
+    padding:10px;
+}
+select{
+    display:inline-block;
+    width:100%;
+    
+}
+.date{
+    width:100%; 
+}
+.col{
+    border:none;
+    height:100px;
+}
+
+
+
+.aside{
+    width:25%;
+    float:left;
+    padding: 10px;
+    margin-right:30px;
+    text-align: center;
+}
+span{
+    font-weight: 700;
+}
+.candidate{
+    font-weight: 700;
+}
+.collection-item{
+    border:1px solid black;
+}

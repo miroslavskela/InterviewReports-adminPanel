@@ -51,6 +51,26 @@ class ReportService {
            })
         })
     }
+    addNewReport = (id,candidateName,candidateId, companyName, companyId, interviewDate, phase, status, note ) => {
+        return fetch(`${baseUrl}reports`, {
+            method: 'POST',
+            body: JSON.stringify({
+                id:id,
+                candidateName:candidateName,
+                candidateId:candidateId,
+                companyName:companyName,
+                companyId:companyId,
+                interviewDate:interviewDate,
+                phase:phase,
+                status:status,
+                note:note
+            }),
+            headers: {
+          "Content-type": "application/json"
+        }
+        })
+    }
+
 }
 
 

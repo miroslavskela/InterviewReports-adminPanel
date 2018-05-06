@@ -4,6 +4,7 @@ import Aside1 from './Aside1'
 import CompanyList from './CompanyList'
 import './company.css'
 import Search from '../partials/Search'
+import MainReportDetail from './MainReportDetail'
 
 
 
@@ -18,7 +19,7 @@ class MainCompanyPage extends Component{
             companyName:"",
             companyId:"",
             companyPage:true,
-            reportDetailsPage:false
+            reportDetailPage:false
         }
         console.log(this.props.data2)
         
@@ -45,6 +46,10 @@ class MainCompanyPage extends Component{
         this.setState({companyPage:false})
         this.props.data2()
     }
+    backToCompanyPage = () =>{
+        this.setState({companyPage:true, reportDetailPage:false})
+    }
+
 
     getCompanies = () => {
         const { companies } = this.state
@@ -72,7 +77,7 @@ class MainCompanyPage extends Component{
                 </ul>
                 </div>
                 </div>:null}
-                {this.state.reportDetailPage?<h1>Progress</h1>:null}
+                {this.state.reportDetailPage?<MainReportDetail data4={this.backToCompanyPage} data={this.state.candidateName} data1={this.state.candidateId} data2={this.state.companyName} data3={this.state.companyId}/>:null}
             </Fragment>
         )
     }
