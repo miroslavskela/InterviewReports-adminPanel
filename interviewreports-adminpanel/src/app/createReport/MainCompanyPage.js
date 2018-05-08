@@ -21,7 +21,6 @@ class MainCompanyPage extends Component{
             companyPage:true,
             reportDetailPage:false
         }
-        console.log(this.props.data2)
         
     }
 

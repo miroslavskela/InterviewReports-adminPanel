@@ -17,7 +17,7 @@ class MainPage extends Component{
             candidatePage:true,
             companyPage:false
         }
-        console.log(this.state.candidates);
+       
         
     }
 
@@ -25,7 +25,7 @@ class MainPage extends Component{
         reportService.fetchCandidates()
         .then((candidates) => {
             this.setState({candidates:candidates})
-            console.log(this.state.candidates);
+           
         })
     }
 

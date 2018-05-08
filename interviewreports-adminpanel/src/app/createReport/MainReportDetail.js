@@ -3,12 +3,14 @@ import './reportDetail.css'
 import Aside2 from './Aside2'
 import {reportService} from '../../services/reportsService'
 import {withRouter} from 'react-router-dom'
+import Utils from '../../shares/Utils'
 
 class MainReportDetail extends Component{
     constructor(props){
         super(props)
         const number=0;
         this.state={
+            button:true,
             reportDetailPage:true,
             companyPage:false,
             candidateName:this.props.data,
@@ -21,6 +23,7 @@ class MainReportDetail extends Component{
             note:""
         
         }
+       
         
     }
 
@@ -42,13 +45,41 @@ class MainReportDetail extends Component{
         return id
     }
     number = this.getRandomId()
+
     
-    addNewReport = () => {
-        reportService.addNewReport(this.number,this.state.candidateName, this.state.candidateId, this.state.companyName, this.state.companyId, this.state.interviewDate, this.state.phase, this.state.status,this.state.note)
-        .then((repsonse) => {
-            this.props.history.push('/')
-        })
+        
+    
+    validateInputs = () => {
+        const chosenDate = new Date(this.state.interviewDate)
+        const chosenDateSeconds = chosenDate.getTime()
+        const todayDate = new Date();
+        const todayDateSeconds = todayDate.getTime()
+        console.log(chosenDateSeconds, todayDateSeconds);
+        if(!this.state.interviewDate || !this.state.phase || !this.state.status || !this.state.note){
+            return (
+                window.alert("All inputs must be valid")
+            )
+        }else if(chosenDate!==undefined && (chosenDateSeconds > todayDateSeconds)){
+            return(
+                window.alert("Date can not be in the future")
+            )
+        }
+        
+        else{
+            reportService.addNewReport(this.number,this.state.candidateName, this.state.candidateId, this.state.companyName, this.state.companyId, this.state.interviewDate, this.state.phase, this.state.status,this.state.note)
+            .then((repsonse) => {  
+                this.props.history.push('/')
+            })
+        }
     }
+    
+    
+    // addNewReport = () => {
+    //     reportService.addNewReport(this.number,this.state.candidateName, this.state.candidateId, this.state.companyName, this.state.companyId, this.state.interviewDate, this.state.phase, this.state.status,this.state.note)
+    //     .then((repsonse) => {  
+    //         this.props.history.push('/')
+    //     })
+    // }
 
     render(){
         return(
@@ -83,7 +114,7 @@ class MainReportDetail extends Component{
                 <textarea  onChange={this.handleChange} id="textarea1" name="note"  onChange={this.handleChange} className="materialize-textarea" placeholder="Note"></textarea>
                 </div>
                 </div>
-                <button onClick={this.addNewReport}>Send</button>
+                <button onClick={this.validateInputs} >Send</button>
                 <button onClick={this.backToCompany}>Back</button>
                 </div>
                 </div>:null}

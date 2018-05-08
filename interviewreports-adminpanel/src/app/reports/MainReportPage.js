@@ -11,7 +11,7 @@ class MainReportPage extends Component{
             searchValue:""
         }
         
-        console.log(this.state.reports);
+       
     }
 
         componentDidMount(){
