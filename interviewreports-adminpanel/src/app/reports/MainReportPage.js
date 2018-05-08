@@ -2,6 +2,7 @@ import React, {Component, Fragment} from 'react'
 import {reportService} from '../../services/reportsService'
 import ReportList from './ReportList'
 import Search from '../partials/Search'
+import './report.css' 
 
 class MainReportPage extends Component{
     constructor(props){
@@ -43,7 +44,7 @@ class MainReportPage extends Component{
             return(
                 <Fragment>
                     <Search onSearchValueChange={this.getSearchValue}/>
-                <div className="container">
+                <div className="container clear">
                 <ReportList data={this.getReports()}/>
                 </div>
                 </Fragment>
