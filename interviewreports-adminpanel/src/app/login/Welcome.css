@@ -8,7 +8,10 @@
     width:70%;
     margin:0 auto;
 }
-
+.container-fluid{
+    height:611px;
+    background-color: rgb(91, 74, 240);
+}
 input{
     margin-bottom: 15px;
     width: 100%;
