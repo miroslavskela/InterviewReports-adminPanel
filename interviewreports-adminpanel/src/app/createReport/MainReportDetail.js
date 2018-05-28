@@ -62,7 +62,10 @@ class MainReportDetail extends Component{
             this.setState({dateInfo:true, info:false})
         }else if((chosenDate!==undefined && (chosenDateSeconds > todayDateSeconds))&&(!this.state.phase || !this.state.status || !this.state.note)){
             this.setState({info:true, dateInfo:true})    
-        }else{
+        }else if((chosenDate!==undefined && (chosenDateSeconds < todayDateSeconds))&&(!this.state.phase || !this.state.status || !this.state.note)){
+            this.setState({info:true, dateInfo:false})    
+        }
+        else{
             this.setState({info:false, dateInfo:false})
             reportService.addNewReport(this.number,this.state.candidateName, this.state.candidateId, this.state.companyName, this.state.companyId, this.state.interviewDate, this.state.phase, this.state.status,this.state.note)
             .then((repsonse) => {  
@@ -93,7 +96,7 @@ class MainReportDetail extends Component{
 
                 <div className="col s4">
                 <select  onChange={this.handleChange} name="phase">
-                <option value="">-</option>
+                <option value="">Chose Phase</option>
                 <option value="CV">CV</option>
                 <option value="HR">HR</option>
                 <option value="TECH">TECH</option>
@@ -103,7 +106,7 @@ class MainReportDetail extends Component{
 
                 <div className="col s4">
                 <select  onChange={this.handleChange} name="status">
-                <option value="">-</option>
+                <option value="">Chose status</option>
                 <option value="passed">Passed</option>
                 <option value="declined">Declined</option>
                 </select>
