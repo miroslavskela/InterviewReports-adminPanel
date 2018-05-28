@@ -5,6 +5,7 @@ import Header from './app/partials/Header'
 import Search from './app/partials/Search'
 import MainReportPage from './app/reports/MainReportPage'
 import MainPage from './app/createReport/MainPage'
+import WelcomePage from './app/login/WelcomePage'
 import {Switch, Route} from 'react-router-dom'
 class App extends Component {
 

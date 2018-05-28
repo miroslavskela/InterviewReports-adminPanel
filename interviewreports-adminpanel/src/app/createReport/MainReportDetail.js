@@ -10,7 +10,8 @@ class MainReportDetail extends Component{
         super(props)
         const number=0;
         this.state={
-            button:true,
+            info:false,
+            dateInfo:false,
             reportDetailPage:true,
             companyPage:false,
             candidateName:this.props.data,
@@ -51,21 +52,21 @@ class MainReportDetail extends Component{
     
     validateInputs = () => {
         const chosenDate = new Date(this.state.interviewDate)
-        const chosenDateSeconds = chosenDate.getTime()
+        const chosenDateSeconds = (chosenDate.getTime()-2000000)
         const todayDate = new Date();
         const todayDateSeconds = todayDate.getTime()
         console.log(chosenDateSeconds, todayDateSeconds);
-        if(!this.state.interviewDate || !this.state.phase || !this.state.status || !this.state.note){
-            return (
-                window.alert("All inputs must be valid")
-            )
-        }else if(chosenDate!==undefined && (chosenDateSeconds > todayDateSeconds)){
-            return(
-                window.alert("Date can not be in the future")
-            )
+        if(!this.state.interviewDate && (!this.state.phase || !this.state.status || !this.state.note)){
+            this.setState({info:true})
+        }else if(!!this.state.interviewDate && !!this.state.phase && !!this.state.status && !!this.state.note && (chosenDate!==undefined && (chosenDateSeconds > todayDateSeconds))){
+            this.setState({dateInfo:true, info:false})
+        }else if((chosenDate!==undefined && (chosenDateSeconds > todayDateSeconds))&&(!this.state.phase || !this.state.status || !this.state.note)){
+            this.setState({info:true, dateInfo:true})    
+        }else if((chosenDate!==undefined && (chosenDateSeconds < todayDateSeconds))&&(!this.state.phase || !this.state.status || !this.state.note)){
+            this.setState({info:true, dateInfo:false})    
         }
-        
         else{
+            this.setState({info:false, dateInfo:false})
             reportService.addNewReport(this.number,this.state.candidateName, this.state.candidateId, this.state.companyName, this.state.companyId, this.state.interviewDate, this.state.phase, this.state.status,this.state.note)
             .then((repsonse) => {  
                 this.props.history.push('/')
@@ -95,7 +96,7 @@ class MainReportDetail extends Component{
 
                 <div className="col s4">
                 <select  onChange={this.handleChange} name="phase">
-                <option value="">-</option>
+                <option value="">Chose Phase</option>
                 <option value="CV">CV</option>
                 <option value="HR">HR</option>
                 <option value="TECH">TECH</option>
@@ -105,7 +106,7 @@ class MainReportDetail extends Component{
 
                 <div className="col s4">
                 <select  onChange={this.handleChange} name="status">
-                <option value="">-</option>
+                <option value="">Chose status</option>
                 <option value="passed">Passed</option>
                 <option value="declined">Declined</option>
                 </select>
@@ -113,6 +114,12 @@ class MainReportDetail extends Component{
                 <div className="col s12">
                 <textarea  onChange={this.handleChange} id="textarea1" name="note"  onChange={this.handleChange} className="materialize-textarea" placeholder="Note"></textarea>
                 </div>
+                {this.state.info?<div>
+                    <p className="red-text">All inputs are required!</p>
+                </div>:null}
+                {this.state.dateInfo?<div>
+                    <p className="red-text">Date can't be in the future!</p>
+                </div>:null}
                 </div>
                 <button onClick={this.validateInputs} >Send</button>
                 <button onClick={this.backToCompany}>Back</button>
