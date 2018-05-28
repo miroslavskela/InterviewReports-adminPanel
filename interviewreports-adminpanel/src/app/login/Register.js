@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 // import './Register.css'
 import './Welcome.css'
+import "./Buttons.css"
 import { withRouter } from 'react-router-dom'
 import Utils from '../../shares/Utils'
 const history = localStorage.getItem('history')

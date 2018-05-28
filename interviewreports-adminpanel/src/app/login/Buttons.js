@@ -12,13 +12,14 @@ class Buttons extends Component {
     handleState = (event) => {
         event.preventDefault()
         const type = event.target.id;
-
         this.setState({
             value: type,
         })
-
+        
+       
         this.props.onCreatePost(type)
     }
+    
 
     render() {
         return (

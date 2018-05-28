@@ -16,7 +16,7 @@ class WelcomePage extends Component {
         console.log("cdm");
     }
 
-    onCreatePostClick = (type,selectedRegister, selectedLogin) => {
+    onCreatePostClick = (type) => {
         this.setState({ value: type })
     }
 

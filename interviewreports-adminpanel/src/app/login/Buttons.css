@@ -9,3 +9,6 @@ a{
 .disabled{
     cursor:not-allowed;
 }
+.waves-effect{
+    margin-bottom:10px;
+}
