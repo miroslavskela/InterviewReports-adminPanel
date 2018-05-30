@@ -4,12 +4,12 @@ import './Welcome.css'
 import "./Buttons.css"
 import { withRouter } from 'react-router-dom'
 import Utils from '../../shares/Utils'
-const history = localStorage.getItem('history')
+
 
 class Register extends Component {
     constructor(props) {
         super(props)
-        if(!history){
+      
         this.state = {
             username: "",
             name: "",
@@ -21,20 +21,20 @@ class Register extends Component {
             users:[],
             error:false
         }
-    }else{
-        this.state = {
-            username: "",
-            name: "",
-            email: "",
-            password: "",
-            value: "",
-            validEmail: false,
-            validPass: false,
-            users:JSON.parse(history),
-            error:false
-        }
     }
+    
+    componentDidMount(){
+        let history = localStorage.getItem('history')
+
+        if(history){
+            console.log(history);
+        this.setState({users:JSON.parse(history)})
     }
+    console.log("object");
+} 
+component
+
+
     handleInputChange = (event) => {
         const target = event.target;
         const value = target.value
@@ -60,17 +60,18 @@ class Register extends Component {
     }
 
     registerProfile = (event) => {
-        if(this.checkArray(this.state.users, this.state.username)){
-            alert("UserName already exists!")
+        const {username, email, password} = this.state
+        const arrayElement = {username:username, email:email, password:password}
+        if(this.checkArray(this.state.users, arrayElement)){
+            alert("User already exists!")
             this.props.onCreatePost("register-tab")
         }else{
-            this.state.users.push(this.state.username, this.state.password)
+            this.state.users.push({username, email, password})
             localStorage.setItem('history', JSON.stringify(this.state.users))
+            
             const type = event.target.id;
             this.setState({
-                value: type,
-               
-                
+                value: type,   
             })
     
             this.props.onCreatePost(type);
@@ -78,6 +79,10 @@ class Register extends Component {
         
        
     }
+   
+       
+       
+  
 
     isValidInputs = () => {
         const { validEmail, validPass } = this.state;
@@ -96,8 +101,7 @@ class Register extends Component {
         const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$/;
          if(re.test(this.state.password)){
              this.setState({validPass:true})
-         }
-             ;
+         }        
     }
     isValid = () => (this.isValidInputs());
 
@@ -105,7 +109,7 @@ class Register extends Component {
     render() {
         return (
             <div className="container">
-                <div>
+                <div key={ localStorage.getItem('history')}>
                     <label htmlFor="username">Username</label><input onChange={this.handleInputChange} name="username" type="text" placeholder="User Name" /><br />
                     <label htmlFor="name">Name</label><input onChange={this.handleInputChange} name="name" type="text" placeholder="Full Name" /><br />
                     <label htmlFor="login">Email Address</label><input onChange={this.handleInputChange} name="email" type="email" placeholder="Email Address" /><br />

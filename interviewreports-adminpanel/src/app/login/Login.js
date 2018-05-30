@@ -27,37 +27,52 @@ class Login extends Component {
             [name]: value
         });
     }
-
     checkPass = (array, arrElement, arrElement1) => {
-        var str1 = JSON.stringify(arrElement);
-        var str2 = JSON.stringify(arrElement1);
-        let exist = false;
-        
-       
-        for(let i = 0, j = 1; i < array.length - 1, j < array.length; i++, j++){
-            var element = array[i]
-            var element1 = array[j]
-            var strElement = JSON.stringify(element)
-            var strElement1 = JSON.stringify(element1)
-                if(str1 === strElement && str2 === strElement1){
-                    exist = true
-                    break;
-                }else{
-                    exist = false
-                }
-            }
-        
-        if(exist){
+        let user = []
+        user = array.filter(function(element){
+            return element.username === arrElement && element.password === arrElement1
+        })
+        if(user.length !== 0){
             return true
         }else{
             return false
         }
-        }
+    }
+
+    // checkPass = (array, arrElement) => {
+
+    
+    //     var str1 = JSON.stringify(arrElement.username + arrElement.password);
+        
+    //     let exist = false;
+        
+    //     if(array){
+    //         for(let i = 0; i < array.length; i++){
+    //             var element = JSON.stringify(array[i].username + array[i].password)
+    //             console.log(element, str1);
+    //                 if(str1 === element){
+    //                     exist = true
+    //                     break;
+    //                 }else{
+    //                     exist = false
+    //                 }
+    //             }
+
+    //         if(exist){
+    //             return true
+    //         }else{
+    //             return false
+    //         }
+    //     }
+    //     }
+    // NOT SO GOOD SOLUTION
 
 
     loginProfile = () => {
         const history = JSON.parse(localStorage.getItem('history')) 
-        if(this.checkPass(history, this.state.username, this.state.password)){
+        const { username, password} = this.state
+    
+        if(this.checkPass(history, username, password)){
             localStorage.setItem('login', true)
             this.props.history.push('/')
         }else{
