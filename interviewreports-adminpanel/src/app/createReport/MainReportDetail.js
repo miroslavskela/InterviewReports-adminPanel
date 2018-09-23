@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import './reportDetail.css'
-import Aside2 from './Aside2'
+import Aside from './Aside'
 import {reportService} from '../../services/reportsService'
 import {withRouter} from 'react-router-dom'
 import Utils from '../../shares/Utils'
@@ -87,7 +87,7 @@ class MainReportDetail extends Component{
             
             <Fragment>
 
-                {this.state.reportDetailPage?<div><Aside2 candidate={this.state.candidateName} company={this.state.companyName}/>
+                {this.state.reportDetailPage?<div><Aside type={"reportDetail"} candidate={this.state.candidateName} company={this.state.companyName}/>
                 <div className="con">
                 <div className="row">
                 <div className="col s4">

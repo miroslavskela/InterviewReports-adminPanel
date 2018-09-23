@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react'
 import {reportService} from '../../services/reportsService'
-import Aside1 from './Aside1'
+import Aside from './Aside'
 import CompanyList from './CompanyList'
 import './company.css'
 import Search from '../partials/Search'
@@ -67,7 +67,7 @@ class MainCompanyPage extends Component{
             <Fragment>
                {this.state.companyPage?<div>
                    <Search onSearchValueChange={this.getSearchValue}/>
-                <Aside1 candidate={this.state.candidateName} company={this.state.companyName}/>
+                <Aside type={"companyPage"} candidate={this.state.candidateName} company={this.state.companyName}/>
                 <div className=" cont">
                 <ul>
                 <CompanyList data={this.getCompanies()} getData={this.getCompanyData}/>

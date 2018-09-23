@@ -63,7 +63,7 @@ class MainPage extends Component{
             <Fragment>
              {this.state.candidatePage?<div>
                  <Search onSearchValueChange={this.getSearchValue}/>
-            <Aside candidate={this.state.candidateName}/>
+            <Aside candidate={this.state.candidateName} type={"candidatePage"}/>
             <div className=" cont">
            
                <CandidateList data={this.getCandidates()} getData={this.getCandidateData}/>
